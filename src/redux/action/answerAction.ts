@@ -12,6 +12,10 @@ export const changeAnswer = (data: any) => (dispatch: Dispatch) => {
   });
 };
 
-export const resetAnswer = () => ({
-  type: RESET_ANSWER,
-})
+export const resetAnswer = () => (dispatch: Dispatch) => {
+   AsyncStorage.removeItem('answers').then(() => {
+    dispatch({
+      type:RESET_ANSWER,
+    })
+  })
+}

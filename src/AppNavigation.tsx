@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { connect, Provider } from 'react-redux';
 import store from './redux/store';
 import { changeUser } from './redux/action/UserAction';
+import Products from './screen/Products';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ const AppNavigation: React.FC<{ user: any, changeUser: (data: any) => void }> = 
           <Stack.Screen name="Login" component={Login} />
         ) : (
           <>
+            <Stack.Screen name="Products" component={Products} />
             <Stack.Screen name="Survey" component={Survey} />
             <Stack.Screen name="Survey2" component={Survey2} />
             <Stack.Screen name="Answers" component={Answers} />

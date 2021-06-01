@@ -15,10 +15,6 @@ export const changeUser = (data: any) => (dispatch: Dispatch) => {
   })
 }
 
-export const resetUser = () => (dispatch: Dispatch) => {
-  AsyncStorage.removeItem('answers').then(() => {
-    dispatch({
-      type:RESET_USER,
-    })
-  })
-}
+export const resetUser = () => ({
+  type:RESET_USER
+})
