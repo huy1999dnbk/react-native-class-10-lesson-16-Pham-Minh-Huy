@@ -19,11 +19,9 @@ import { Provider as PaperProvider } from 'react-native-paper';
 const App = () => {
   return (
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
-      <Provider store={store}>
-        <PaperProvider>
-          <AppNavigation />
-        </PaperProvider>
-      </Provider>
+      <PaperProvider>
+        <AppNavigation />
+      </PaperProvider>
     </SafeAreaView>
   );
 };

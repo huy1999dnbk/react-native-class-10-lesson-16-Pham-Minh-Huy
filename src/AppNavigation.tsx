@@ -12,9 +12,10 @@ import { connect, Provider } from 'react-redux';
 import store from './redux/store';
 import { changeUser } from './redux/action/UserAction';
 import Products from './screen/Products';
-
+import CreatePro from './screen/CreatePro';
+import { QueryClient, QueryClientProvider } from 'react-query';
 const Stack = createStackNavigator();
-
+const queryClient = new QueryClient();
 const AppNavigation: React.FC<{ user: any, changeUser: (data: any) => void }> = ({ user, changeUser }) => {
   // useEffect(() => {
   //   AsyncStorage.getItem('username')
@@ -30,25 +31,21 @@ const AppNavigation: React.FC<{ user: any, changeUser: (data: any) => void }> = 
   console.log(user)
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {!user.username ? (
-          <Stack.Screen name="Login" component={Login} />
-        ) : (
+      <QueryClientProvider client={queryClient}>
+        <Stack.Navigator>
           <>
             <Stack.Screen name="Products" component={Products} />
+            <Stack.Screen name="CreatePro" component={CreatePro} />
             <Stack.Screen name="Survey" component={Survey} />
             <Stack.Screen name="Survey2" component={Survey2} />
             <Stack.Screen name="Answers" component={Answers} />
           </>
-        )}
-      </Stack.Navigator>
+        </Stack.Navigator>
+      </QueryClientProvider>
     </NavigationContainer>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  const { userReducer } = state;
-  return { user: userReducer };
-};
 
-export default connect(mapStateToProps, { changeUser: changeUser })(AppNavigation);
+
+export default AppNavigation;
